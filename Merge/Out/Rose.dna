@@ -1,0 +1,16 @@
+
+<DnaLibrary RuntimeVersion="v4.0" >
+    <ExternalLibrary Path="Rose.dll" />
+
+    <![CDATA[
+
+        Public Module MyFunctions
+
+            Function AddThem(x, y)
+                AddThem = x + y
+            End Function
+
+        End Module
+]]>
+
+</DnaLibrary>
