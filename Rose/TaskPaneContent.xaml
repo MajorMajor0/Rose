@@ -21,7 +21,7 @@
                 <ComboBox x:Name="ThreadDataComboBox" HorizontalAlignment="Left" Width="300" SelectionChanged="ThreadDataComboBox_SelectionChanged" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding FractionCallout, TargetNullValue=null, FallbackValue=fallback, Mode=OneTime}"/>
+                            <TextBox Text="{Binding FractionCallout, TargetNullValue=null, FallbackValue=fallback, Mode=OneTime}" BorderBrush="Transparent"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
 

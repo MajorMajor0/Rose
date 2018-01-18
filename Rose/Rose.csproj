@@ -52,6 +52,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcelCommands.cs" />
     <Compile Include="ExcelCustomTaskPane.cs" />
     <Compile Include="Threads\Data.cs" />
     <Compile Include="Threads\Thread.cs" />
