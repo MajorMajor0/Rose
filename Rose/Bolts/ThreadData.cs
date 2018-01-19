@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Threads
+namespace Bolts
 {
-    internal partial class Data
+    internal partial class ThreadData
     {
         public const string Threads =
 // Fraction|N|Series|Class|FractionCallout|DecimalCallout|Allowance|MajorMax|MajorBasic|MajorMin|MajorMinE|PitchMax|PitchMin|MinorMax|MinorMin|Tol

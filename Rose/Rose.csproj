@@ -52,22 +52,35 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionList\FunctionListContent.xaml.cs">
+      <DependentUpon>FunctionListContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionList\FunctionListTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ExcelCommands.cs" />
-    <Compile Include="ExcelCustomTaskPane.cs" />
-    <Compile Include="Threads\Data.cs" />
-    <Compile Include="Threads\Thread.cs" />
+    <Compile Include="Rose.dna.cs" />
+    <Compile Include="Bolts\BoltTaskPaneControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bolts\ThreadData.cs" />
+    <Compile Include="Bolts\Thread.cs" />
     <Compile Include="UnitConverter\CVT.cs" />
     <Compile Include="UnitConverter\Data.cs" />
     <Compile Include="UnitConverter\Units.cs" />
     <Compile Include="Rose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitConverter\WashUnits.cs" />
-    <Compile Include="TaskPaneContent.xaml.cs">
-      <DependentUpon>TaskPaneContent.xaml</DependentUpon>
+    <Compile Include="Bolts\BoltContent.xaml.cs">
+      <DependentUpon>BoltContent.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="TaskPaneContent.xaml">
+    <Page Include="FunctionList\FunctionListContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Bolts\BoltContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

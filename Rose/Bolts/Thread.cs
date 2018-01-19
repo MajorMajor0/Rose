@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace Threads
+namespace Bolts
 {
 	class Threads
 	{
@@ -16,7 +16,7 @@ namespace Threads
 			int[] doubles = { 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
 
 			// Get thread data from constant string
-			StringReader csv = new StringReader(Data.Threads);
+			StringReader csv = new StringReader(ThreadData.Threads);
 			{
 				string line;
 				string[] lineParse;

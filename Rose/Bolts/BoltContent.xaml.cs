@@ -14,22 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
-//using ExcelDna.Integration;
+using ExcelDna.Integration;
 //using ExcelDna.Utilities;
 
-namespace Rose
+namespace Bolts
 {
 	/// <summary>
 	/// Interaction logic for TaskPaneContent.xaml
 	/// </summary>
-	public partial class TaskPaneContent : UserControl
+	public partial class BoltContent : UserControl
 	{
 
-		Excel.Application ExcelApp = new Excel.Application();
+		Excel.Application ExcelApp;
 
-		List<Threads.Thread> preferredThreads => Threads.Threads.List.Where(x => x.MajorBasic < 1 && x.MajorBasic > .249 && x.Class == "2B" && (x.Series == "UNF" || x.Series == "UNC")).ToList();
+		List<Bolts.Thread> preferredThreads => Bolts.Threads.List.Where(x => x.MajorBasic < 1 && x.MajorBasic > .249 && x.Class == "2B" && (x.Series == "UNF" || x.Series == "UNC")).ToList();
 
-		public TaskPaneContent()
+		public BoltContent()
 		{
 			ExcelApp = (Excel.Application)Marshal.GetActiveObject("Excel.Application");
 			InitializeComponent();
