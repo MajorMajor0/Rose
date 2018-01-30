@@ -34,15 +34,15 @@
 			}
 		}
 
-		public void OnDeleteCTP(IRibbonControl control)
-		{
-			if (BoltTaskPane != null)
-			{
-				// Could hide instead, by calling ctp.Visible = false;
-				BoltTaskPane.Delete();
-				BoltTaskPane = null;
-			}
-		}
+		//public void OnDeleteCTP(IRibbonControl control)
+		//{
+		//	if (BoltTaskPane != null)
+		//	{
+		//		// Could hide instead, by calling ctp.Visible = false;
+		//		BoltTaskPane.Delete();
+		//		BoltTaskPane = null;
+		//	}
+		//}
 
 		static CustomTaskPane FunctionListPane;
 

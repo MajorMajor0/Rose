@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
-using ExcelDna.Integration;
 //using ExcelDna.Utilities;
 
 namespace Bolts
