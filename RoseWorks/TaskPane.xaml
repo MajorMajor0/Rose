@@ -1,34 +1,37 @@
 ﻿<UserControl x:Class="RoseWorks.TaskPane"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             Background="#323232"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <Style x:Key="Normal" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
-    </UserControl.Resources>
-
-
-        <StackPanel >
-            <Button Name="Boob" Content="Bonus" Width="75" Click="MyButton_Click"/>
-            <StackPanel Margin="5">
-                <TextBlock Style ="{StaticResource Normal}" Margin="0,0,0,3" Text="Threads"/>
-            <StackPanel Orientation="Horizontal">
-                                <ComboBox x:Name="ThreadDataComboBox" HorizontalAlignment="Left" Width="300" SelectionChanged="ThreadDataComboBox_SelectionChanged" >
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding FractionCallout, TargetNullValue=null, FallbackValue=fallback, Mode=OneTime}" BorderBrush="Transparent"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-
-                </ComboBox>
-            </StackPanel>
-
-            </StackPanel>
-        </StackPanel>
-
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:RoseWorks"
+			 mc:Ignorable="d"
+			 Background="#323232"
+			 d:DesignHeight="300"
+			 d:DesignWidth="300"
+			 HorizontalAlignment="Stretch"
+			 VerticalAlignment="Stretch"
+			 Margin="5"
+			 BorderBrush="Transparent">
+	<UserControl.Resources>
+		<Style x:Key="Normal"
+			   TargetType="TextBlock">
+			<Setter Property="Foreground"
+					Value="White" />
+		</Style>
+	</UserControl.Resources>
+	<DockPanel Margin="5"
+			   LastChildFill="False">
+		<Button	DockPanel.Dock="Top"
+				Content="Get Drawing Tree"
+				Width="100"
+				Height="20"
+				Click="GetDrawingTree_Click" />
+		<StackPanel>
+			<StackPanel Orientation="Horizontal" />
+		</StackPanel>
+		<TextBlock x:Name="StatusBlock"
+				   DockPanel.Dock="Bottom"
+				   Height="20"
+				   Text="{Binding Path=(local:Reporter.NewsFeed), TargetNullValue=Reporter, FallbackValue=Reporter}" />
+	</DockPanel>
 </UserControl>

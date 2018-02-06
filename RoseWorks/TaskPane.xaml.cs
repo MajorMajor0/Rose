@@ -29,15 +29,13 @@ namespace RoseWorks
 			InitializeComponent();
 		}
 
-		void MyButton_Click(object sender, System.Windows.RoutedEventArgs e)
+		void GetDrawingTree_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
 
+			DrawingTree.GetDrawingTree();
 
 
-
-
-
-			var Shizzle1 = SW.App.ActiveDoc as ModelDoc2;
+			//var Shizzle1 = SW.App.ActiveDoc as ModelDoc2;
 
 			//var Shizzle2 = SW.App.GetDocuments();
 			//var Shizzle3 = SW.App.GetDocumentCount();
@@ -52,6 +50,9 @@ namespace RoseWorks
 
 		}
 
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
 
+		}
 	}
 }

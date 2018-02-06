@@ -86,10 +86,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentR.cs" />
     <Compile Include="DrawingTree.cs" />
     <Compile Include="Main.ComRegister.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Reporter.cs" />
     <Compile Include="SolidWorks.cs" />
     <Compile Include="TaskPane.xaml.cs">
       <DependentUpon>TaskPane.xaml</DependentUpon>

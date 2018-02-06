@@ -80,6 +80,7 @@
     <Compile Include="Galasoft.MvvmLight\RelayCommand.cs" />
     <Compile Include="Galasoft.MvvmLight\WeakAction.cs" />
     <Compile Include="Galasoft.MvvmLight\WeakFunc.cs" />
+    <Compile Include="Reporter.cs" />
     <Compile Include="Rose.dna.cs" />
     <Compile Include="Bolts\BoltTaskPaneControl.cs">
       <SubType>UserControl</SubType>

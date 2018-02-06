@@ -7,32 +7,26 @@ using System.Threading.Tasks;
 
 namespace RoseWorks
 {
-	class DrawingTree
+	public static class DrawingTree
 	{
 		/// <summary>
 		/// Create and export a drawing tree from an assembly document
 		/// </summary>
 		/// <returns></returns>
-		public List<string[]> GetDrawingTree()
+		public static List<string[]> GetDrawingTree(ModelDoc2 modelDoc2)
 		{
 			try
 			{
-				if (SW.App.ActiveDoc is AssemblyDoc Assembly)
-				{
-					List<string> PropertyNames = Assembly.GetAllPropertyNames();
-				}
-
-
+				ComponentR component = new ComponentR(modelDoc2);
 			}
 
-			catch (Exception ex)
+			catch (Exception)
 			{
-
+				Reporter.Report("Something went wrong and an exception was caught while getting the drawing tree.");
 			}
 
 			return new List<string[]>();
 		}
 
-		
 	}
 }
