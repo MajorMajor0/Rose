@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
 //using ExcelDna.Utilities;
 
-namespace Bolts
+namespace RoseXL
 {
 	/// <summary>
 	/// Interaction logic for TaskPaneContent.xaml
@@ -26,7 +26,7 @@ namespace Bolts
 
 		Excel.Application ExcelApp;
 
-		List<Bolts.Thread> preferredThreads => Bolts.Threads.List.Where(x => x.MajorBasic < 1 && x.MajorBasic > .249 && x.Class == "2B" && (x.Series == "UNF" || x.Series == "UNC")).ToList();
+		List<RoseXL.Thread> preferredThreads => RoseXL.Threads.List.Where(x => x.MajorBasic < 1 && x.MajorBasic > .249 && x.Class == "2B" && (x.Series == "UNF" || x.Series == "UNC")).ToList();
 
 		public BoltContent()
 		{

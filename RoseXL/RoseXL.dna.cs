@@ -21,7 +21,7 @@
 			if (BoltTaskPane == null)
 			{
 				// Make a new one using ExcelDna.Integration.CustomUI.CustomTaskPaneFactory 
-				BoltTaskPane = CustomTaskPaneFactory.CreateCustomTaskPane(typeof(Bolts.BoltTaskPane), "Bolts");
+				BoltTaskPane = CustomTaskPaneFactory.CreateCustomTaskPane(typeof(RoseXL.BoltTaskPane), "Bolts");
 				BoltTaskPane.Visible = true;
 				BoltTaskPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionLeft;
 				BoltTaskPane.DockPositionStateChange += ctp_DockPositionStateChange;
@@ -51,7 +51,7 @@
 			if (FunctionListPane == null)
 			{
 				// Make a new one using ExcelDna.Integration.CustomUI.CustomTaskPaneFactory 
-				FunctionListPane = CustomTaskPaneFactory.CreateCustomTaskPane(typeof(FunctionList.FunctionListTaskPane), "Functions");
+				FunctionListPane = CustomTaskPaneFactory.CreateCustomTaskPane(typeof(RoseXL.FunctionFormControl), "Functions");
 				FunctionListPane.Visible = true;
 				FunctionListPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionLeft;
 				FunctionListPane.DockPositionStateChange += ctp_DockPositionStateChange;
