@@ -41,7 +41,11 @@ namespace RoseWorks
 		{
 			try
 			{
-				var x = modelDoc2.Extension.get_CustomPropertyManager("").Get6(propertyName, false, out string value, out string resolvedValue, out bool wasResolved, out bool linkToProperty);
+				string value;
+				string resolvedValue;
+				bool wasResolved;
+				bool linkToProperty;
+				var x = modelDoc2.Extension.get_CustomPropertyManager("").Get6(propertyName, false, out value, out resolvedValue, out wasResolved, out linkToProperty);
 
 				if (wasResolved)
 				{
@@ -92,12 +96,12 @@ namespace RoseWorks
 			try
 			{
 				List<Component2> components = new List<Component2>();
-
-				if (component2.GetChildren() is object[] objects)
+				object objects = component2.GetChildren();
+				if (objects is object[])
 				{
-					foreach (Object ob in objects)
+					foreach (object obj in objects as object[])
 					{
-						Component2 newComponent2 = ob as Component2;
+						Component2 newComponent2 = obj as Component2;
 						components.Add(newComponent2);
 
 						if (!topLevelOnly)
@@ -200,9 +204,10 @@ namespace RoseWorks
 			{
 				List<Component2> components2 = new List<Component2>();
 
-				if (assemblyDoc.GetComponents(topLevelOnly) is object[] objects)
+				object objects = assemblyDoc.GetComponents(topLevelOnly);
+				if (objects is object[])
 				{
-					foreach (Object obj in objects)
+					foreach (object obj in objects as object[])
 					{
 						components2.Add(obj as Component2);
 					}

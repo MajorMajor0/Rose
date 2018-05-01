@@ -1,0 +1,22 @@
+<DnaLibrary RuntimeVersion="v4.0" >
+  <ExternalLibrary Path="RoseXL.dll" LoadFromBytes="true" Pack="true" />
+
+  <CustomUI>
+    <customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+      <ribbon>
+        <tabs>
+          <tab id="CustomTab" label="Rose">
+            <group id="SampleGroup" label="Tabs">
+              <button id="BoltsButton" label="Bolts" size="large" onAction="ShowBoltTaskPane" />
+              <button id="FunctionsButton" label="Functions" size="large" onAction="ShowFunctionListTaskPane" />
+
+            </group >
+
+          </tab>
+
+        </tabs>
+      </ribbon>
+    </customUI>
+  </CustomUI>
+
+</DnaLibrary>
