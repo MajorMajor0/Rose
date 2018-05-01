@@ -17,5 +17,7 @@ namespace RoseWorks
 		public static int Cookie { get; set; }
 
 		public static SldWorks App { get; set; }
+
+		public static ModelDoc2 ActiveDocument => App.ActiveDoc as ModelDoc2;
 	}
 }

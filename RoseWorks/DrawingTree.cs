@@ -17,7 +17,8 @@ namespace RoseWorks
 		{
 			try
 			{
-				ComponentR component = new ComponentR(modelDoc2);
+				ComponentR component = ComponentR.CreateComponentR(modelDoc2);
+
 			}
 
 			catch (Exception)

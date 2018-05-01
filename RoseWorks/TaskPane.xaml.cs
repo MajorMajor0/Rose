@@ -31,8 +31,15 @@ namespace RoseWorks
 
 		void GetDrawingTree_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
+			if (SW.ActiveDocument != null)
+			{
+				ComponentR component = ComponentR.CreateComponentR(SW.ActiveDocument);
+				DrawingTreeView.DataContext = component;
+			}
 
-			DrawingTree.GetDrawingTree();
+
+
+
 
 
 			//var Shizzle1 = SW.App.ActiveDoc as ModelDoc2;

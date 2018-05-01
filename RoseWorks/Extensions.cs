@@ -21,7 +21,7 @@ namespace RoseWorks
 		{
 			try
 			{
-				return modelDoc.Extension.CustomPropertyManager[configurationName].GetNames() as List<string>;
+				return (modelDoc.Extension.CustomPropertyManager[configurationName].GetNames() as string[]).ToList();
 				//return modelDoc.Extension.get_CustomPropertyManager(configurationName).GetNames() as List<string>;
 			}
 			catch
@@ -60,7 +60,25 @@ namespace RoseWorks
 			}
 		}
 
-		#endregion ModelDoc2 Extesions
+		/// <summary>
+		/// Safe get path name for a ModelDoc2
+		/// </summary>
+		/// <returns></returns>
+		public static string GetFilenameR(this ModelDoc2 modelDoc2)
+		{
+			try
+			{
+				return modelDoc2.GetPathName();
+			}
+
+			catch
+			{
+				Reporter.Report("Problem getting path name of a component");
+				return "";
+			}
+		}
+
+		#endregion ModelDoc2 Extensions
 
 		#region Component2 extensions
 
@@ -217,7 +235,6 @@ namespace RoseWorks
 				foreach (Component2 component in AssemblyComponents)
 				{
 					propertyNames.AddRange(component.GetPropertyNamesR());
-
 				}
 
 				return propertyNames.Distinct().OrderBy(x => x).ToList();
