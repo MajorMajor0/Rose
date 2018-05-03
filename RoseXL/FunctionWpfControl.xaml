@@ -1,23 +1,72 @@
-﻿<UserControl x:Class="RoseXL.FunctionListContent"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             Background="#323232"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <Style x:Key="Normal" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
-    </UserControl.Resources>
+﻿<UserControl x:Class="RoseXL.FunctionWpfControl"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:z="clr-namspace:RoseXL;assembly=RoseXL"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 mc:Ignorable="d"
+			 Background="#323232"
+			 d:DesignHeight="300"
+			 d:DesignWidth="300">
+	<UserControl.Resources>
+		<Style x:Key="Normal"
+			   TargetType="TextBlock">
+			<Setter Property="Foreground"
+					Value="White" />
+		</Style>
 
+		<Style x:Key="CButtonStyle"
+			   TargetType="Button">
 
-        <StackPanel >
-            <Button Name="ConvertButton" Content="Convert" Width="75" Click="ConvertButton_Click"/>
-            <StackPanel Margin="5">
-                <TextBlock Style ="{StaticResource Normal}" Margin="0,0,0,3" Text="Function list TBD"/>
-        </StackPanel>
-        </StackPanel>
+			<Setter Property="Content"
+					Value="{Binding Command.Content, RelativeSource={RelativeSource Self}, FallbackValue=CButton}" />
+
+			<Setter Property="ToolTip"
+					Value="{Binding Command.ToolTip, RelativeSource={RelativeSource Self}}" />
+		</Style>
+
+		<!--<Style x:Key="DissapearingCButtonStyle"
+			   TargetType="Button"
+			   BasedOn="{StaticResource CButtonStyle}">
+
+			<Setter Property="Visibility"
+					Value="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource booleanToVisibilityConverter}}" />
+		</Style>-->
+
+		<!--<Style x:Key="CMenuItemStyle"
+			   TargetType="MenuItem">
+
+			<Setter Property="Header"
+					Value="{Binding Command.Content, RelativeSource={RelativeSource Self}}" />
+
+			<Setter Property="ToolTip"
+					Value="{Binding Command.ToolTip, RelativeSource={RelativeSource Self}}" />
+
+			<Setter Property="Visibility"
+					Value="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={StaticResource booleanToVisibilityConverter}}" />
+		</Style>-->
+
+		<!--<Style x:Key="CContextMenuItemStyle"
+			   TargetType="MenuItem"
+			   BasedOn="{StaticResource CMenuItemStyle}">
+
+			<Setter Property="DataContext"
+					Value="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
+		</Style>-->
+
+	</UserControl.Resources>
+
+	<StackPanel>
+		<Button Name="ConvertButton"
+				Style="{StaticResource CButtonStyle}"
+				Command="{Binding ConvertToXLCommand}"
+				Width="75"
+				Margin="10" />
+		<StackPanel Margin="5">
+			<TextBlock Style="{StaticResource Normal}"
+					   Margin="0,0,0,3"
+					   Text="Function list TBD" />
+		</StackPanel>
+	</StackPanel>
 
 </UserControl>

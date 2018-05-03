@@ -8,9 +8,9 @@
 	using ExcelDna.Integration;
 	using ExcelDna.Integration.CustomUI;
 
-
-	/////////////// Define the backing class for the Ribbon ///////////////////////////
-	// Would need to be marked with [ComVisible(true)] if in a project that is marked as [assembly:ComVisible(false)] which is the default for VS projects.
+	/// <summary>
+	/// Define the backing class for the Ribbon.  Would need to be marked with [ComVisible(true)] if in a project that is marked as [assembly:ComVisible(false)] which is the default for VS projects.
+	/// </summary>
 	[ComVisible(true)]
 	public class RoseRibbon : ExcelRibbon
 	{
@@ -21,7 +21,7 @@
 			if (BoltTaskPane == null)
 			{
 				// Make a new one using ExcelDna.Integration.CustomUI.CustomTaskPaneFactory 
-				BoltTaskPane = CustomTaskPaneFactory.CreateCustomTaskPane(typeof(RoseXL.BoltTaskPane), "Bolts");
+				BoltTaskPane = CustomTaskPaneFactory.CreateCustomTaskPane(typeof(RoseXL.BoltFormControl), "Bolts");
 				BoltTaskPane.Visible = true;
 				BoltTaskPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionLeft;
 				BoltTaskPane.DockPositionStateChange += ctp_DockPositionStateChange;

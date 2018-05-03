@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitConverter
+namespace Rose
 {
-	internal static class WashUnits
+	public static class WashUnits
 	{
-		internal static object WashUnits1(double Value, string Callout, string ToUnits)
+		public static object WashUnits1(double Value, string Callout, string ToUnits)
 		{
 			string FromUnits = "in";
 
@@ -31,7 +31,7 @@ namespace UnitConverter
 
 		}
 
-		internal static object WashUnits2(double Value, string Callout, string ToUnits)
+		public static object WashUnits2(double Value, string Callout, string ToUnits)
 		{
 			string FromUnits = "in2";
 

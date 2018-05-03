@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace RoseXL
+namespace Rose
 {
-	class Threads
+	public class Threads
 	{
-		internal static List<Thread> List { get; set; }
+		public static List<Thread> List { get; set; }
 
 		static Threads()
 		{
@@ -50,7 +50,7 @@ namespace RoseXL
 		}
 	}
 
-	internal class Thread
+	public class Thread
 	{
 		public string Fraction { get; }
 		public double N { get; }

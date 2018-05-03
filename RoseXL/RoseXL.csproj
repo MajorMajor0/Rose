@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6B90E98-63F2-4118-A744-F82AAF6B9ADF}</ProjectGuid>
+    <ProjectGuid>{816E15B6-38E6-4552-8DE8-C44D10D13DAD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RoseXL</RootNamespace>
@@ -20,6 +20,7 @@
     <DefineConstants>TRACE;DEBUG;PLATFORMNET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,13 +29,14 @@
     <DefineConstants>TRACE;PLATFORMNET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\Output\</OutputPath>
     <DefineConstants>TRACE;DEBUG;PLATFORMNET45</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -61,6 +63,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -72,9 +75,15 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoltWpfControl.xaml.cs">
+      <DependentUpon>BoltWpfControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Command.cs" />
     <Compile Include="FunctionFormControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FunctionViewModel.cs">
+      <DependentUpon>FunctionFormControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FunctionWpfControl.xaml.cs">
       <DependentUpon>FunctionWpfControl.xaml</DependentUpon>
@@ -87,22 +96,14 @@
     <Compile Include="BoltFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ThreadData.cs" />
-    <Compile Include="Thread.cs" />
-    <Compile Include="UnitConverter\CVT.cs" />
-    <Compile Include="UnitConverter\Data.cs" />
-    <Compile Include="UnitConverter\Units.cs" />
     <Compile Include="RoseXL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitConverter\WashUnits.cs" />
-    <Compile Include="BoltWpfControl.xaml.cs">
-      <DependentUpon>BoltWpfControl.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="BoltWpfControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>BoltFormControl.cs</DependentUpon>
     </Page>
     <Page Include="FunctionWpfControl.xaml">
       <SubType>Designer</SubType>
@@ -129,6 +130,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rose\Rose.csproj">
+      <Project>{7553c799-7e50-4d24-b42d-8e5879530792}</Project>
+      <Name>Rose</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

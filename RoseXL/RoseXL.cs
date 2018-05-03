@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExcelDna.Integration;
-using UnitConverter;
-using RoseXL;
+using Rose;
 
 
 
@@ -20,10 +19,11 @@ namespace RoseXL
 {
 	public static class Functions
 	{
-		[ExcelFunction(Description = "Convert units")]
-		public static object CVT(double value, string fromUnitsIn, string toUnitsIn, int ignoreDim = 0)
+		[ExcelFunction(Description = "Convert Units", HelpTopic = "Helpo Topico")]
+
+		public static object CVT([ExcelArgument(Description = "DDD", Name = "NNNN")] double value, string fromUnitsIn, string toUnitsIn, int ignoreDim = 0)
 		{
-			return UnitConverter.CVT.Convert(value, fromUnitsIn, toUnitsIn, ignoreDim);
+			return Rose.CVT.Convert(value, fromUnitsIn, toUnitsIn, ignoreDim);
 		}
 
 		[ExcelFunction(Description = "Significant figures")]
@@ -35,15 +35,43 @@ namespace RoseXL
 		}
 
 		[ExcelFunction(Description = "Root sum squared")]
-		public static double RSS(params double[] values)
+		public static double RSS([ExcelArgument(AllowReference = true)] object v1, [ExcelArgument(AllowReference = true)]object v2, object v3, object v4, object v5, object v6, object v7, object v8)
 		{
-			double Sum = 0;
-			for (int i = 0; i < values.Length; i++)
-			{
-				Sum += values[i] * values[i];
-			}
+			// ExcelReference would typically be used as a handle, in order to call other functions in the C API.For example, you'd say string address = (string)XlCall.Excel(XlCall.xlfReftext, myExcelRef, true) to get the address of the reference in A1 - style.
+			List<double> lister = new List<double>();
 
-			return Math.Sqrt(Sum);
+			lister.AddRange(RSSSub(v1));
+			lister.AddRange(RSSSub(v2));
+			lister.AddRange(RSSSub(v3));
+			lister.AddRange(RSSSub(v4));
+			lister.AddRange(RSSSub(v5));
+			lister.AddRange(RSSSub(v6));
+			lister.AddRange(RSSSub(v7));
+			lister.AddRange(RSSSub(v8));
+
+			lister = lister.Select(x => x * x).ToList();
+			double returner = Math.Sqrt(lister.Sum());
+
+			return returner;
+		}
+
+		static List<double> RSSSub(object v1)
+		{
+			List<double> returner = new List<double>();
+			if (v1 is double)
+			{
+				returner.Add((double)v1);
+			}
+			else if (v1 is object[,])
+
+			{
+				foreach (object obj in v1 as object[,])
+				{
+					if (obj is double)
+						returner.Add(((double)obj));
+				}
+			}
+			return returner;
 		}
 
 		[ExcelFunction(Description = "Concatenate a range of cells")]
@@ -303,8 +331,7 @@ namespace RoseXL
 		}
 
 		[ExcelFunction(IsMacroType = true)]
-		public static object[,] FUNCTIONTOFORMULA(
-		[ExcelArgument(AllowReference = true)]object arg)
+		public static object[,] FUNCTIONTOFORMULA([ExcelArgument(AllowReference = true)]object arg)
 		{
 			ExcelReference theRef = (ExcelReference)arg;
 			int rows = theRef.RowLast - theRef.RowFirst + 1;
@@ -320,7 +347,32 @@ namespace RoseXL
 			return res;
 		}
 
-
+		[ExcelFunction(Description = "Returns the turbo-encabulation of disparate, frangible binaries.")]
+		public static double TURBOENCABULATOR(bool b0, bool b1)
+		{
+			double encabulation = 0;
+			if (b0 && b1)
+			{
+				Random rand = new Random();
+				encabulation = Math.Floor(Math.Cosh(rand.Next()));
+			}
+			if (b0 && !b1)
+			{
+				Random rand = new Random();
+				encabulation = Math.Floor(Math.Sinh(rand.Next()));
+			}
+			if (!b0 && b1)
+			{
+				Random rand = new Random();
+				encabulation = Math.Floor(Math.Acos(rand.Next()));
+			}
+			if (!b0 && !b1)
+			{
+				Random rand = new Random();
+				encabulation = Math.Floor(Math.Asin(rand.Next()));
+			}
+			return encabulation;
+		}
 
 
 

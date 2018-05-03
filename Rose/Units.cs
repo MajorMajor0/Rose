@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 
-namespace UnitConverter
+namespace Rose
 {
 	internal partial class RefUnits
 	{

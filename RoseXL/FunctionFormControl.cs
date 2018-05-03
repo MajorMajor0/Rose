@@ -1,10 +1,6 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
-
-using ExcelDna.Integration;
-using ExcelDna.Integration.CustomUI;
 
 namespace RoseXL
 {
@@ -16,13 +12,8 @@ namespace RoseXL
 		public FunctionFormControl()
 		{
 			var wpfElementHost = new ElementHost() { Dock = DockStyle.Fill };
-			wpfElementHost.HostContainer.Children.Add(new FunctionListContent());
-
+			wpfElementHost.HostContainer.Children.Add(new FunctionWpfControl());
 			Controls.Add(wpfElementHost);
-
-
-
 		}
-
 	}
 }

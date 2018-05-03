@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitConverter
+namespace Rose
 {
-	internal static class CVT
+	public static class CVT
 	{
-		internal static object Convert(double Value, string FromUnitsIn, string ToUnitsIn, int IgnoreDim = 0)
+		public static object Convert(double Value, string FromUnitsIn, string ToUnitsIn, int IgnoreDim = 0)
 		{
 			Unit FromUnits = new Unit(FromUnitsIn);
 			Unit ToUnits = new Unit(ToUnitsIn);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoseXL
+namespace Rose
 {
     internal partial class ThreadData
     {
