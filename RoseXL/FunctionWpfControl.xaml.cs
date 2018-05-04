@@ -25,5 +25,10 @@ namespace RoseXL
 			DataContext = new FunctionViewModel(ExcelApp);
 			InitializeComponent();
 		}
+
+		private void PauseButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

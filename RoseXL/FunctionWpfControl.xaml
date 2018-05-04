@@ -4,9 +4,10 @@
 			 xmlns:z="clr-namspace:RoseXL;assembly=RoseXL"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:wpfmath="clr-namespace:WpfMath.Controls;assembly=WpfMath"
 			 mc:Ignorable="d"
-			 Background="#323232"
-			 d:DesignHeight="300"
+			 Background="Black"
+			 d:DesignHeight="500"
 			 d:DesignWidth="300">
 	<UserControl.Resources>
 		<Style x:Key="Normal"
@@ -55,18 +56,58 @@
 		</Style>-->
 
 	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="200" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Border Grid.Row="0"
+				Margin="5"
+				Background="#323232">
+			<StackPanel DataContext="{Binding ElementName=FunctionListBox, Path=SelectedItem}">
+				<TextBlock Text="{Binding Path=Name}"
+						   Foreground="White" />
+				<TextBlock Text="{Binding Path=Description}"
+						   Foreground="White" />
+				<wpfmath:FormulaControl VerticalContentAlignment="Bottom"
+										Formula="{Binding PaddedLatex}"/>
 
-	<StackPanel>
-		<Button Name="ConvertButton"
-				Style="{StaticResource CButtonStyle}"
-				Command="{Binding ConvertToXLCommand}"
-				Width="75"
-				Margin="10" />
-		<StackPanel Margin="5">
-			<TextBlock Style="{StaticResource Normal}"
-					   Margin="0,0,0,3"
-					   Text="Function list TBD" />
-		</StackPanel>
-	</StackPanel>
+			</StackPanel>
+		</Border>
+		<Border Grid.Row="1"
+				Margin="5"
+				Background="#323232">
+			<StackPanel x:Name="FunctionListStackPanel">
+				<Button Name="ConvertButton"
+						Style="{StaticResource CButtonStyle}"
+						Command="{Binding ConvertToXLCommand}"
+						Width="75"
+						Margin="10" />
+				<Button Name="PauseButton"
+						Click="PauseButton_Click"
+						Width="75"
+						Margin="10" />
+				<TextBlock Foreground="White"
+						   Text="Available Functions" />
+				<ListBox x:Name="FunctionListBox"
+						 Background="Transparent"
+						 Foreground="White"
+						 Height="100"
+						 ScrollViewer.CanContentScroll="True"
+						 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+						 ScrollViewer.VerticalScrollBarVisibility="Auto"
+						 ItemsSource="{Binding RoseExcelFunctions}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Name}"
+									   Foreground="White" />
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+
+				</ListBox>
+			</StackPanel>
+		</Border>
+
+	</Grid>
 
 </UserControl>

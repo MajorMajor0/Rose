@@ -56,37 +56,36 @@ namespace Rose
 
 		public static class GetUnits
 		{
-
 			public static string Symbol(string Input)
 			{
 				string Shizzle;
 
-				if (RefUnits.List.Find(x => x.Symbol.Equals(Input)) == null) { return ""; }
+				if (List.Find(x => x.Symbol.Equals(Input)) == null) { return ""; }
 
 				else
 				{
-					System.Diagnostics.Debug.WriteLine(RefUnits.List.Find(x => x.Symbol.Equals(Input)).BaseSymbol);
-					Shizzle = RefUnits.List.Find(x => x.Symbol.Equals(Input)).BaseSymbol;
+					System.Diagnostics.Debug.WriteLine(List.Find(x => x.Symbol.Equals(Input)).BaseSymbol);
+					Shizzle = List.Find(x => x.Symbol.Equals(Input)).BaseSymbol;
 					return Shizzle;
 				}
 			}
 
 			public static string AltSymbol1(string Input)
 			{
-				if (RefUnits.List.Find(x => x.AltSymbol1.Equals(Input)) == null) { return ""; }
-				else { return RefUnits.List.Find(x => x.AltSymbol1.Equals(Input)).BaseSymbol; }
+				if (List.Find(x => x.AltSymbol1.Equals(Input)) == null) { return ""; }
+				else { return List.Find(x => x.AltSymbol1.Equals(Input)).BaseSymbol; }
 			}
 
 			public static string AltSymbol2(string Input)
 			{
-				if (RefUnits.List.Find(x => x.AltSymbol2.Equals(Input)) == null) { return ""; }
-				else { return RefUnits.List.Find(x => x.AltSymbol2.Equals(Input)).BaseSymbol; }
+				if (List.Find(x => x.AltSymbol2.Equals(Input)) == null) { return ""; }
+				else { return List.Find(x => x.AltSymbol2.Equals(Input)).BaseSymbol; }
 			}
 
 			public static string Name(string Input)
 			{
-				if (RefUnits.List.Find(x => x.Name.Equals(Input)) == null) { return ""; }
-				else { return RefUnits.List.Find(x => x.Name.Equals(Input)).BaseSymbol; }
+				if (List.Find(x => x.Name.Equals(Input)) == null) { return ""; }
+				else { return List.Find(x => x.Name.Equals(Input)).BaseSymbol; }
 			}
 		}
 
@@ -94,62 +93,48 @@ namespace Rose
 
 	public class RefUnit
 	{
-		public string Symbol { get; set; }
-		public string Name { get; set; }
-		public string BaseSymbol { get; set; }
-		public string BaseName { get; set; }
-		public string DimensionSymbol { get; set; }
-		public string DimensionName { get; set; }
-		public double Factor { get; set; }
-		public string AltSymbol1 { get; set; }
-		public string AltSymbol2 { get; set; }
-		public bool Valid { get; set; }
+		public string Symbol { get; set; } = "-";
+		public string Name { get; set; } = "-";
+		public string BaseSymbol { get; set; } = "-";
+		public string BaseName { get; set; } = "-";
+		public string DimensionSymbol { get; set; } = "-";
+		public string DimensionName { get; set; } = "-";
+		public double Factor { get; set; } = 0;
+		public string AltSymbol1 { get; set; } = "-";
+		public string AltSymbol2 { get; set; } = "-";
+		public bool Valid { get; set; } = false;
 
-		public RefUnit()
+		public RefUnit(string symbol, string altsymbol1, string altsymbol2,
+			string name, string basesymbol, string basename, double factor,
+			string dimensionname, string dimensionsymbol, bool valid)
 		{
-			this.Symbol = "-";
-			this.Name = "-";
-			this.BaseSymbol = "-";
-			this.BaseName = "-";
-			this.DimensionSymbol = "-";
-			this.DimensionName = "-";
-			this.Factor = 0;
-			this.AltSymbol1 = "-";
-			this.AltSymbol2 = "-";
-			this.Valid = false;
-		}
-
-		public RefUnit(string symbol = "-", string altsymbol1 = "-", string altsymbol2 = "-",
-			string name = "-", string basesymbol = "-", string basename = "-", double factor = 0,
-			string dimensionname = "-", string dimensionsymbol = "-", bool valid = false)
-		{
-			this.Symbol = symbol;
-			this.Name = name;
-			this.BaseSymbol = basesymbol;
-			this.BaseName = basename;
-			this.DimensionSymbol = dimensionsymbol;
-			this.DimensionName = dimensionname;
-			this.Factor = factor;
-			this.AltSymbol1 = altsymbol1;
-			this.AltSymbol2 = altsymbol2;
-			this.Valid = Valid;
+			Symbol = symbol;
+			Name = name;
+			BaseSymbol = basesymbol;
+			BaseName = basename;
+			DimensionSymbol = dimensionsymbol;
+			DimensionName = dimensionname;
+			Factor = factor;
+			AltSymbol1 = altsymbol1;
+			AltSymbol2 = altsymbol2;
+			Valid = Valid;
 		}
 	}
 
 	public class Unit
 	{
-		public string[] Numerator { get; set; }
-		public string[] Denominator { get; set; }
-		public string Both { get; set; }
-		public string NumeratorDimension { get; set; }
-		public string DenominatorDimension { get; set; }
-		public string Dimension { get; set; }
+		internal string[] Numerator { get; set; }
+		internal string[] Denominator { get; set; }
+		internal string Both { get; set; }
+		internal string NumeratorDimension { get; set; }
+		internal string DenominatorDimension { get; set; }
+		internal string Dimension { get; set; }
 
-		public Unit(string Input)
+		internal Unit(string Input)
 		{
-			this.Both = Input;
-			this.NumeratorDimension = String.Empty;
-			this.DenominatorDimension = String.Empty;
+			Both = Input;
+			NumeratorDimension = string.Empty;
+			DenominatorDimension = string.Empty;
 
 			// Standardize format of input
 			Input = Input.Replace("·", " ").Replace("*", " ")
@@ -162,15 +147,15 @@ namespace Rose
 			string[] NumeratorHold = Input.Split('/');
 
 			// Split on spaces and place numerator units in string array
-			this.Numerator = NumeratorHold[0].Split(' ');
+			Numerator = NumeratorHold[0].Split(' ');
 
 			if (NumeratorHold.Length > 1)
 			{
-				this.Denominator = NumeratorHold[1].Split(' ');
+				Denominator = NumeratorHold[1].Split(' ');
 			}
 		}
 
-		public static double GetProduct(string[] UnitsToParse)
+		internal static double GetProduct(string[] UnitsToParse)
 		{
 			string Unit;
 			string PowerString;
@@ -221,7 +206,7 @@ namespace Rose
 			return Product;
 		}
 
-		public static string GetDimension(string[] UnitsToParse)
+		internal static string GetDimension(string[] UnitsToParse)
 		{
 			string Unit;
 			string PowerString;
@@ -285,7 +270,7 @@ namespace Rose
 
 		}
 
-		public static string FlattenUnits(string Input)
+		internal static string FlattenUnits(string Input)
 		{
 			Input = Input.Replace("s2", "s s")
 						 .Replace("s3", "s s s")
@@ -294,7 +279,7 @@ namespace Rose
 						 .Replace("m4", "m m m m");
 
 			string[] InputAr = Input.Split(' ');
-			Array.Sort<string>(InputAr);
+			Array.Sort(InputAr);
 			Input = string.Join(" ", InputAr);
 			return Input.Trim();
 		}

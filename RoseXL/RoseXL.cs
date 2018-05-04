@@ -374,8 +374,5 @@ namespace RoseXL
 			return encabulation;
 		}
 
-
-
-
 	}
 }

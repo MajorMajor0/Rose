@@ -19,9 +19,12 @@ namespace RoseXL
 		{
 			ExcelApp = excelApp;
 			ConvertToXLCommand = new Command(ConvertToXL, ConvertToXLCanExecute, "Convert to XL", "Converts the selected cells from Rose functions to pure excel.");
+			CreateRoseExcelFuctions();
 		}
 
 		public Command ConvertToXLCommand { get; set; }
+
+		public List<RoseExcelFunction> RoseExcelFunctions { get; set; }
 
 		bool ConvertToXLCanExecute()
 		{
@@ -107,6 +110,31 @@ namespace RoseXL
 			string returner = "cvt converted";
 			return returner;
 		}
+
+		void CreateRoseExcelFuctions()
+		{
+			RoseExcelFunctions = new List<RoseExcelFunction>();
+			RoseExcelFunctions.Add(
+				new RoseExcelFunction
+				{
+					Name = "CVT",
+					Latex = "input*factor",
+					Description = "Convert Units",
+					Help = "CVT help lorem ipsum dolor",
+					Formula = "CVT(Value, From, To)"
+				});
+
+			RoseExcelFunctions.Add(
+				new RoseExcelFunction
+				{
+					Name = "RSS",
+					Latex = @"\sum_{i=1}^n x_i^2",
+					Description = "Root Sum Square",
+					Help = "RSS help lorem ipsum dolor",
+					Formula = "RSS(x1, x2:x3, x4...)"
+				});
+		}
+
 		static string RSSConverter(string cellContents)
 		{
 			string returner = "rss converted";
@@ -114,8 +142,6 @@ namespace RoseXL
 
 			return returner;
 		}
-
-
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -131,6 +157,18 @@ namespace RoseXL
 			return true;
 		}
 	}
+
+
+	public class RoseExcelFunction
+	{
+		public string Name { get; set; }
+		public string Latex { get; set; }
+		public string PaddedLatex => @"\color{white}" + Latex;
+		public string Description { get; set; }
+		public string Help { get; set; }
+		public string Formula { get; set; }
+	}
+
 }
 
 
