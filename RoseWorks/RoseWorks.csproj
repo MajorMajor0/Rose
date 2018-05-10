@@ -88,7 +88,6 @@
     <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WpfMath, Version=0.3.1.40510, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WpfMath.0.4.0\lib\net40\WpfMath.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

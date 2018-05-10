@@ -1,7 +1,6 @@
 ﻿<UserControl x:Class="RoseXL.FunctionWpfControl"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:z="clr-namspace:RoseXL;assembly=RoseXL"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:wpfmath="clr-namespace:WpfMath.Controls;assembly=WpfMath"
@@ -58,41 +57,89 @@
 	</UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="200" />
+			<RowDefinition Height="300" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 		<Border Grid.Row="0"
 				Margin="5"
+				Padding="5"
 				Background="#323232">
 			<StackPanel DataContext="{Binding ElementName=FunctionListBox, Path=SelectedItem}">
-				<TextBlock Text="{Binding Path=Name}"
-						   Foreground="White" />
-				<TextBlock Text="{Binding Path=Description}"
-						   Foreground="White" />
+				<TextBlock Text="{Binding Path=Name, FallbackValue=CSS}"
+						   Foreground="White"
+						   FontFamily="Tahoma"
+						   FontWeight="Bold"
+						   Margin="0,0,0,10" />
+				<TextBlock Text="{Binding Path=Description, FallbackValue=Convert Units}"
+						   Foreground="White"
+						   Margin="0,0,0,10" />
 				<wpfmath:FormulaControl VerticalContentAlignment="Bottom"
-										Formula="{Binding PaddedLatex}"/>
+										Formula="{Binding PaddedLatex, FallbackValue=\\color{white}\\sum_{i=1}^n x_i^2}"
+										Margin="0,0,0,5" />
+				<TextBlock Text="{Binding Path=Help, FallbackValue=Returns the pitch diameter of a valid thread callout.}"
+						   Foreground="White"
+						   Margin="0,0,0,10"
+						   TextWrapping="Wrap" />
+				<TextBlock Text="Arguments:"
+						   Foreground="White"
+						   Margin="0,0,0,5"
+						   TextWrapping="Wrap" />
+				<ListBox x:Name="ArgumentsListBox"
+						 ItemsSource="{Binding Arguments}"
+						 Background="Transparent"
+						 BorderBrush="Transparent"
+						 HorizontalAlignment="Stretch"
+						 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+						 ScrollViewer.VerticalScrollBarVisibility="Disabled">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<DockPanel HorizontalAlignment="Stretch">
+								<TextBlock Text="• "
+										   Foreground="White"
+										   DockPanel.Dock="Left"/>
+								<TextBlock Text="{Binding}"
+										   Foreground="White"
+										   TextWrapping="Wrap"
+										   DockPanel.Dock="Left" />
+							</DockPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+
+				</ListBox>
+				<TextBlock Text="{Binding Path=Reference}"
+						   Foreground="White"
+						   Background="Transparent"
+						   TextWrapping="Wrap"
+						   Margin="10,0,0,10" />
 
 			</StackPanel>
 		</Border>
 		<Border Grid.Row="1"
 				Margin="5"
 				Background="#323232">
-			<StackPanel x:Name="FunctionListStackPanel">
+			<DockPanel x:Name="FunctionListStackPanel"
+					   Margin="5"
+					   LastChildFill="True">
 				<Button Name="ConvertButton"
 						Style="{StaticResource CButtonStyle}"
 						Command="{Binding ConvertToXLCommand}"
+						DockPanel.Dock="Bottom"
+						Height="25"
 						Width="75"
 						Margin="10" />
-				<Button Name="PauseButton"
-						Click="PauseButton_Click"
-						Width="75"
-						Margin="10" />
-				<TextBlock Foreground="White"
-						   Text="Available Functions" />
+
+				<TextBlock Text="Available Functions"
+						   Foreground="White"
+						   FontFamily="Tahoma"
+						   FontWeight="Bold"
+						   Margin="0,0,0,5"
+						   DockPanel.Dock="Top" />
+
 				<ListBox x:Name="FunctionListBox"
 						 Background="Transparent"
 						 Foreground="White"
-						 Height="100"
+						 BorderBrush="Transparent"
+						 DockPanel.Dock="Top"
 						 ScrollViewer.CanContentScroll="True"
 						 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 						 ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -105,7 +152,7 @@
 					</ListBox.ItemTemplate>
 
 				</ListBox>
-			</StackPanel>
+			</DockPanel>
 		</Border>
 
 	</Grid>

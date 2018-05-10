@@ -35,19 +35,19 @@ namespace RoseXL
 		}
 
 		[ExcelFunction(Description = "Root sum squared")]
-		public static double RSS([ExcelArgument(AllowReference = true)] object v1, [ExcelArgument(AllowReference = true)]object v2, object v3, object v4, object v5, object v6, object v7, object v8)
+		public static double RSS(object Range0, object Range1, object Range2, object Range3, object Range4, object Range5, object Range6, object Range7)
 		{
 			// ExcelReference would typically be used as a handle, in order to call other functions in the C API.For example, you'd say string address = (string)XlCall.Excel(XlCall.xlfReftext, myExcelRef, true) to get the address of the reference in A1 - style.
 			List<double> lister = new List<double>();
 
-			lister.AddRange(RSSSub(v1));
-			lister.AddRange(RSSSub(v2));
-			lister.AddRange(RSSSub(v3));
-			lister.AddRange(RSSSub(v4));
-			lister.AddRange(RSSSub(v5));
-			lister.AddRange(RSSSub(v6));
-			lister.AddRange(RSSSub(v7));
-			lister.AddRange(RSSSub(v8));
+			lister.AddRange(RSSSub(Range0));
+			lister.AddRange(RSSSub(Range1));
+			lister.AddRange(RSSSub(Range2));
+			lister.AddRange(RSSSub(Range3));
+			lister.AddRange(RSSSub(Range4));
+			lister.AddRange(RSSSub(Range5));
+			lister.AddRange(RSSSub(Range6));
+			lister.AddRange(RSSSub(Range7));
 
 			lister = lister.Select(x => x * x).ToList();
 			double returner = Math.Sqrt(lister.Sum());
@@ -348,7 +348,7 @@ namespace RoseXL
 		}
 
 		[ExcelFunction(Description = "Returns the turbo-encabulation of disparate, frangible binaries.")]
-		public static double TURBOENCABULATOR(bool b0, bool b1)
+		public static object TURBOENCABULATOR(bool b0, bool b1)
 		{
 			double encabulation = 0;
 			if (b0 && b1)
@@ -368,8 +368,9 @@ namespace RoseXL
 			}
 			if (!b0 && !b1)
 			{
-				Random rand = new Random();
-				encabulation = Math.Floor(Math.Asin(rand.Next()));
+				return "Error! Input binaries must be frangible.";
+				//Random rand = new Random();
+				//encabulation = Math.Floor(Math.Asin(rand.Next()));
 			}
 			return encabulation;
 		}
